@@ -20,6 +20,10 @@ public class Main {
         Cell[][] previousPreviousGrid = new Cell[size][size];
 
         while (true) {
+            int population = countPopulation(grid);
+            System.out.println("Generation: " + iterations + ", Population: " + population);
+            System.out.println();
+
             for (int x = 0; x < size; x++) {
                 for (int y = 0; y < size; y++) {
                     System.out.print(grid[x][y].toString() + "  ");
@@ -27,6 +31,7 @@ public class Main {
                 System.out.println();
             }
             System.out.println();
+            System.out.println("---------------------------------------");
             System.out.println();
 
             int changes = nextGeneration(grid, previousGrid, previousPreviousGrid);
@@ -104,6 +109,21 @@ public class Main {
         }
 
         return count;
+    }
+
+    static int countPopulation(Cell[][] grid) {
+        int size = grid.length;
+        int population = 0;
+
+        for (int x = 0; x < size; x++) {
+            for (int y = 0; y < size; y++) {
+                if (grid[x][y].isFull()) {
+                    population++;
+                }
+            }
+        }
+
+        return population;
     }
 }
 
